@@ -17,3 +17,5 @@ const getAllNflTeams = async () => {
 
     return data
 }
+
+module.exports = {getAllNflTeams}
