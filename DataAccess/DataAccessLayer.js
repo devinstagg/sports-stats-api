@@ -9,13 +9,12 @@ const getConnectedClient = async () => {
 const getAllNflTeams = async () => {
     const client = await getConnectedClient()
 
-    const collection = await client.db("sports-stats").collection("nfl-teams");
-
-    const data = await collection.find().toArray()
-
-    await client.close();
-
-    return data
+    try {
+        const collection = await client.db("sports-stats").collection("nfl-teams");
+        return await collection.find().toArray()
+    } finally {
+        await client.close();
+    }
 }
 
-module.exports = {getAllNflTeams}
+module.exports = { getAllNflTeams }
