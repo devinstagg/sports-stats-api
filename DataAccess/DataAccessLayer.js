@@ -6,15 +6,33 @@ const getConnectedClient = async () => {
     return await client.connect()
 }
 
+const getNflTeamsCollection = async () => {
+    return await client.db("sports-stats").collection("nfl-teams")
+}
+
 const getAllNflTeams = async () => {
     const client = await getConnectedClient()
 
     try {
-        const collection = await client.db("sports-stats").collection("nfl-teams");
+        const collection = await getNflTeamsCollection(client)
         return await collection.find().toArray()
     } finally {
         await client.close();
     }
 }
 
-module.exports = { getAllNflTeams }
+const createNflTeam = async (nflTeam) => {
+    const client = await getConnectedClient()
+
+    try {
+        const collection = await getConnectedClient()
+        await collection.insertOne(nflTeam)
+    } finally {
+        client.close()
+    }
+}
+
+module.exports = { 
+    getAllNflTeams,
+    createNflTeam
+ }
