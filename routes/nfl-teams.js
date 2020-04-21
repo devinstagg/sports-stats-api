@@ -5,7 +5,6 @@ const dataAccessLayer = require("../DataAccess/DataAccessLayer")
 
 const isValidNflTeam = (nflTeam) => {
     const hasValidWins = !!nflTeam.regularSeasonWins2019
-
     return hasValidWins
 }
 
