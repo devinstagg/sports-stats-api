@@ -6,7 +6,7 @@ const getConnectedClient = async () => {
     return await client.connect()
 }
 
-const getNflTeamsCollection = async () => {
+const getNflTeamsCollection = async (client) => {
     return await client.db("sports-stats").collection("nfl-teams")
 }
 
