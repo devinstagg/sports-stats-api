@@ -25,7 +25,7 @@ const createNflTeam = async (nflTeam) => {
     const client = await getConnectedClient()
 
     try {
-        const collection = await getConnectedClient()
+        const collection = await getNflTeamsCollection(client)
         await collection.insertOne(nflTeam)
     } finally {
         client.close()
