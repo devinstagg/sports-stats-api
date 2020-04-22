@@ -37,7 +37,7 @@ const editNflTeam = async (nflTeam) => {
     const { _id, ...nflTeamToUpdate } = nflTeam
 
     try { 
-        const collection = getNflTeamsCollection(client)
+        const collection = await getNflTeamsCollection(client)
         await collection.updateOne({ _id: ObjectId(_id)} , {
             $set: nflTeamToUpdate
         })
