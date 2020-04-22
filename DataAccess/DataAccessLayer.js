@@ -32,7 +32,20 @@ const createNflTeam = async (nflTeam) => {
     }
 }
 
+
+const deleteNflTeam = async (nflTeamId) => {
+    const client = await getConnectedClient()
+
+    try {
+        const collection = await getNflTeamsCollection(client)
+        await collection.deleteOne({ _id: ObjectId(nflTeamId)})
+    } finally {
+        client.close()
+    }
+} 
+
 module.exports = { 
     getAllNflTeams,
-    createNflTeam
+    createNflTeam,
+    deleteNflTeam
  }

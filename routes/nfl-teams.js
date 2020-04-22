@@ -26,4 +26,15 @@ router.post('/', async (req, res) => {
     }
 })
 
+
+
+router.delete('/:id', async (req,res) => {
+    const nflTeamId = req.params.id
+
+    await dataAccessLayer.deleteNflTeam(nflTeamId)
+
+    res.send(nflTeamId)
+})
+
+
 module.exports = router;
