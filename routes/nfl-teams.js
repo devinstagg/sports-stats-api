@@ -26,9 +26,22 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.put('/', async (req, res) => {
+    const nflTeam = req.body
 
+    if (isValidNflTeam(nflTeam)) {
+        await dataAccessLayer.editNflTeam(nflTeam)
 
-router.delete('/:id', async (req,res) => {
+        res.send(nflTeam)
+    } else {
+        res.status(400).send({
+            nflTeam,
+            message: 'Must include number of wins'
+        })
+    }
+})
+
+router.delete('/:id', async (req, res) => {
     const nflTeamId = req.params.id
 
     await dataAccessLayer.deleteNflTeam(nflTeamId)
