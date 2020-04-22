@@ -20,7 +20,6 @@ router.post('/', async (req, res) => {
         res.status(201).send(nflTeam)
     } else {
         res.status(400).send({
-            hasValidWins,
             message: 'Must include number of wins'
         })
     }
